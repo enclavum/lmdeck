@@ -1,0 +1,16 @@
+LMDeck
+Copyright 2026 The LMDeck Authors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product bundles and links software developed at Apple Inc. and by the
+Swift on Server community, distributed under the Apache License, Version 2.0:
+
+  - SwiftNIO and related packages (https://github.com/apple/swift-nio)
+  - Hummingbird (https://github.com/hummingbird-project/hummingbird)
+  - AsyncHTTPClient (https://github.com/swift-server/async-http-client)
+  - Swift Service Lifecycle (https://github.com/swift-server/swift-service-lifecycle)
+  - The apple/swift-* support packages listed in Package.resolved
+
+Each bundled dependency retains its own copyright and license terms; refer to
+the respective projects for their full NOTICE and license texts.

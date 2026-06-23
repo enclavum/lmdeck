@@ -1,0 +1,54 @@
+name: Bug report
+description: Something isn't working as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for filing a report. Please don't include API keys or other secrets.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. …
+        2. …
+        3. …
+    validations:
+      required: true
+  - type: input
+    id: lmdeck-version
+    attributes:
+      label: LMDeck version
+      description: See Settings → About.
+    validations:
+      required: true
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version
+    validations:
+      required: true
+  - type: dropdown
+    id: engines
+    attributes:
+      label: Which engine(s) are involved?
+      multiple: true
+      options:
+        - Ollama
+        - oMLX
+        - LM Studio
+        - llama-swap
+        - Not engine-specific
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: From the Logs tab, or `log stream --predicate 'subsystem == "com.enclavum.lmdeck"'`. Redact secrets.
+      render: shell

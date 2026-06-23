@@ -1,0 +1,15 @@
+.build/
+LMDeck.app/
+LMDeck.dmg
+.dmg-stage/
+.signing.mk
+*.provisionprofile
+.DS_Store
+*.swiftpm
+xcuserdata/
+.idea/
+
+# local-only working material (not published). `docs/` is intentionally NOT ignored — it's reserved
+# for public documentation; internal/working notes live in `notes/`.
+design/
+notes/

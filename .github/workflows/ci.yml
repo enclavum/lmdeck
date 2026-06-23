@@ -1,0 +1,41 @@
+name: CI
+
+# Locks in the "tests stay green" invariant the README/CONTRIBUTING promise. Runs the Swift unit
+# suite + a build on every push to main and every PR. (The pytest integration suite is intentionally
+# not run here — it needs live local LLM engines, which CI runners don't have.)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    name: Build & test
+    # macOS 15 image: the package targets .macOS(.v15) and uses the Swift 6 toolchain, so it needs
+    # the macOS 15 SDK (Xcode 16+), which this runner provides by default.
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          xcode-select -p
+          swift --version
+
+      - name: Cache SwiftPM build
+        uses: actions/cache@v4
+        with:
+          path: .build
+          key: ${{ runner.os }}-spm-${{ hashFiles('Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-
+
+      - name: Build
+        run: swift build
+
+      - name: Test
+        run: swift test

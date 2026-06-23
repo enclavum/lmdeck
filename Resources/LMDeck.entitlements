@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Authorized by the embedded Developer ID provisioning profile (which grants keychain-access-
+         groups 9AVLQK4NW8.*). This activates the data-protection Keychain for the API keys: SecretStore
+         uses the app's own (default) access group, so it sets no kSecAttrAccessGroup in code. -->
+    <key>com.apple.application-identifier</key>
+    <string>9AVLQK4NW8.com.enclavum.lmdeck</string>
+    <key>com.apple.developer.team-identifier</key>
+    <string>9AVLQK4NW8</string>
+    <key>keychain-access-groups</key>
+    <array>
+        <string>9AVLQK4NW8.com.enclavum.lmdeck</string>
+    </array>
+</dict>
+</plist>
