@@ -46,6 +46,9 @@ requested model. Meanwhile, the menu-bar popup shows all loaded models and your 
 **Homebrew**
 
 ```bash
+brew tap enclavum/tap
+brew trust enclavum/tap  # required on recent Homebrew
+
 brew install --cask lmdeck
 ```
 
