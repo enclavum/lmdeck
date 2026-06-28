@@ -2,7 +2,7 @@
 
 # LMDeck
 
-One OpenAI endpoint for local LLM engines. Cross-engine routing and memory management — request admission and model auto-eviction.
+One OpenAI endpoint for local LLM engines — with cross-engine memory management
 
 [![Version](https://img.shields.io/github/v/release/enclavum/lmdeck?label=version)](https://github.com/enclavum/lmdeck/releases/latest)
 [![CI](https://github.com/enclavum/lmdeck/actions/workflows/ci.yml/badge.svg)](https://github.com/enclavum/lmdeck/actions/workflows/ci.yml)
@@ -36,6 +36,31 @@ Point your clients at `http://localhost:5678/v1` and let them send requests to t
 engines directly. LMDeck figures out which engine runs the requested model, routes the request there, and streams the
 response back. If the requested model isn't loaded yet, LMDeck can evict unpinned models to let the engine load the
 requested model. Meanwhile, the menu-bar popup shows all loaded models and your free memory at a glance.
+
+---
+
+## Why not just point clients at each engine — or use a proxy?
+
+Those route requests; **LMDeck routes *and* manages memory and models across multiple local engines.** A generic proxy
+can give you one endpoint, but that's where it stops: it forwards requests without tracking what's loaded across your
+engines, or how much RAM your Mac has free. No single engine helps either — each only sees its own models and its own
+footprint. LMDeck sits above all of them and manages both:
+
+- **Models** — every model across Ollama, oMLX, LM Studio and llama-swap in one place: discover, load, unload, pin and
+  route, instead of managing each engine on its own.
+- **Memory** — it gates every load it makes against real free RAM, evicting the least-recently-used model from *any*
+  engine to make room, or refusing cleanly instead of freezing your Mac.
+
+No YAML, no extra daemon — just a menu-bar app.
+
+|  | Point clients at each engine | Generic proxy | **LMDeck** |
+| --- | :---: | :---: | :---: |
+| One stable endpoint for all your engines | ✗ | ✓ | ✓ |
+| Load / unload / pin models across engines | ✗ | ✗ | ✓ |
+| Cross-engine routing by model name | ✗ | ◑ via config | ✓ |
+| Memory-aware load admission | ✗ | ✗ | ✓ |
+| Cross-engine eviction on shared RAM | ✗ | ✗ | ✓ |
+| Native Mac app, zero-config | ✗ | ✗ | ✓ |
 
 ---
 
